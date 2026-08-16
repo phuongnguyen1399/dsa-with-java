@@ -2,8 +2,8 @@ package dsa_java.neetcode.two_pointers;
 
 public class ValidPalindrome {
     public static void main(String[] args) {
-        String s = "tab a cat";
-        System.out.println(isPalindrome1(s));
+        String s = "aba";
+        System.out.println(isPalindrome2(s));
     }
 
     //Solution 1: Reverse String
@@ -31,7 +31,28 @@ public class ValidPalindrome {
 
     //Solution 2: Two Pointers
     public static boolean isPalindrome2(String s) {
-        
+        if (s.length() == 0 || s.length() == 1) {
+            return true;
+        }
+
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+            while ((left < right) && !Character.isLetterOrDigit(s.charAt(left))) {
+                left++;
+            }
+            while ((left < right) && !Character.isLetterOrDigit(s.charAt(right))) {
+                right--;
+            }
+
+            if (Character.toLowerCase(s.charAt(left)) == Character.toLowerCase(s.charAt(right))) {
+                left++;
+                right--;
+            } else {
+                return false;
+            }
+        }
 
         return true;
     }
